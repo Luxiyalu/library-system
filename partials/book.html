@@ -1,0 +1,16 @@
+<div class="container">
+    <header>
+        <h1>Todo List</h1>
+
+        <form class="new-book" ng-submit="addBook(newBook); newBook='';">
+            <input ng-model="newBook" type="text" name="text" placeholder="Type to add new book" />
+        </form>
+    </header>
+
+    <ul>
+        <li ng-repeat="book in books">
+            <button class="delete" ng-click="books.remove(book)">&times;</button>
+            <span class="text">{{book.text}}</span>
+        </li>
+    </ul>
+</div>
