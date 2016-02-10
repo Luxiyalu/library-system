@@ -1,0 +1,19 @@
+<div class="container">
+    <header>
+        <h1>Author List</h1>
+
+        <form ng-submit="addItem(authors, author); author='';">
+            <md-input-container>
+                <label>Author Name</label>
+                <input name="name" ng-model="author.name">
+            </md-input-container>
+        </form>
+    </header>
+
+    <ul>
+        <li ng-repeat="author in authors">
+            <button class="delete" ng-click="authors.remove(author)">&times;</button>
+            <span class="text">{{author.name}}</span>
+        </li>
+    </ul>
+</div>

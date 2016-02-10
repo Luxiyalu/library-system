@@ -2,9 +2,12 @@
     <title>Todo List</title>
 </head>
 
-<body ng-app="library">
-    <a ui-sref="book">Book</a>
-    <a ui-sref="author">Author</a>
+<body ng-app="library" ng-controller="AppCtrl">
+
+    <a ui-sref="author">Authors</a>
+    <a ui-sref="book">Books</a>
+    <a ui-sref="copy">Copies</a>
 
     <ui-view></ui-view>
+
 </body>
