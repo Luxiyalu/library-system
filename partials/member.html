@@ -1,0 +1,13 @@
+<div class="container">
+    <header>
+        <h1>Member List</h1>
+    </header>
+
+    <ul>
+        <li ng-repeat="member in members" layout="row" layout-align="left center">
+            <i class="icon-edits material-icons" ng-click="members.remove(member)">clear</i>
+            <p>{{ member.firstName }} {{ member.lastName }} - {{ member.dob | date:'yyyy/MM/dd' }} - {{ member._id }}</p>
+            <i ng-if="!member.edit" ng-click="$state.go('editmember', {id: member._id})" class="icon-edits material-icons">create</i>
+        </li>
+    </ul>
+</div>

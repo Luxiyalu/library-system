@@ -1,8 +1,34 @@
 <div class="container">
     <header>
         <h1>Copy List</h1>
+
+        <form layout="row" layout-align="left center">
+            <md-input-container flex>
+                <label>Book Name</label>
+                <md-select ng-model="copy.bookId">
+                    <md-option ng-repeat="book in books" value="{{book._id}}">{{book.name}}</md-option>
+                </md-select>
+            </md-input-container>
+            
+            <i class="icon-send material-icons" ng-click="addItem(copies, copy); copy='';">send</i>
+        </form>
     </header>
 
     <ul>
+        <li ng-repeat="copy in copies" layout="row" layout-align="left center">
+            <i class="icon-edits material-icons" ng-click="copies.remove(copy)">clear</i>
+            <div ng-if="copy.edit" layout="row" layout-align="left center" flex>
+                <md-input-container flex>
+                    <label>Book Name</label>
+                    <md-select ng-model="copy.bookId">
+                        <md-option ng-repeat="book in books" value="{{book._id}}">{{book.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+                
+                <i ng-click="copy.edit=false;copies.save(copy)" class="icon-edits material-icons">save</i>
+            </div>
+            <span ng-if="!copy.edit">{{ $index + 1 }} - {{ findItem(books, copy.bookId).name }}</span>
+            <i ng-if="!copy.edit" ng-click="copy.edit=true" class="icon-edits material-icons">create</i>
+        </li>
     </ul>
 </div>

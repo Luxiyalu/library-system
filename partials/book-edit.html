@@ -1,0 +1,13 @@
+<div layout="row" flex>
+    <md-input-container flex>
+        <label>Book Name</label>
+        <input name="name" ng-model="book.name">
+    </md-input-container>
+
+    <md-input-container flex>
+        <label>Author Name</label>
+        <md-select ng-model="book.authorId">
+            <md-option ng-repeat="author in authors" value="{{author._id}}">{{author.name}}</md-option>
+        </md-select>
+    </md-input-container>
+</div>

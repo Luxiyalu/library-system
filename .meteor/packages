@@ -24,3 +24,5 @@ coffeescript
 angularui:angular-ui-router
 urigo:angular-ui-router
 stevezhu:lodash
+less
+planettraining:material-design-icons

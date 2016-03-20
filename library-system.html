@@ -1,13 +1,12 @@
 <head>
-    <title>Todo List</title>
+    <title>Library System</title>
+    <link rel="icon" href="favicon.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body ng-app="library" ng-controller="AppCtrl">
-
-    <a ui-sref="author">Authors</a>
-    <a ui-sref="book">Books</a>
-    <a ui-sref="copy">Copies</a>
-
-    <ui-view></ui-view>
-
+    <nav-bar></nav-bar>
+    <ui-view>
+        <h1>Library System</h1>
+    </ui-view>
 </body>

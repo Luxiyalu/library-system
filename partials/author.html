@@ -2,18 +2,29 @@
     <header>
         <h1>Author List</h1>
 
-        <form ng-submit="addItem(authors, author); author='';">
-            <md-input-container>
+        <form layout="row" layout-align="left center">
+            <md-input-container flex>
                 <label>Author Name</label>
                 <input name="name" ng-model="author.name">
             </md-input-container>
+            
+            <i class="icon-send material-icons" ng-click="addItem(authors, author); author='';">send</i>
         </form>
     </header>
 
     <ul>
-        <li ng-repeat="author in authors">
-            <button class="delete" ng-click="authors.remove(author)">&times;</button>
-            <span class="text">{{author.name}}</span>
+        <li ng-repeat="author in authors" layout="row" layout-align="left center">
+            <i class="icon-edits material-icons" ng-click="authors.remove(author)">clear</i>
+            <div ng-if="author.edit" layout="row" layout-align="left center" flex>
+                <md-input-container flex>
+                    <label>Author Name</label>
+                    <input name="name" ng-model="author.name">
+                </md-input-container>
+                
+                <i ng-click="author.edit=false;authors.save(author)" class="icon-edits material-icons">save</i>
+            </div>
+            <span ng-if="!author.edit">{{author.name}}</span>
+            <i ng-if="!author.edit" ng-click="author.edit=true" class="icon-edits material-icons">create</i>
         </li>
     </ul>
 </div>

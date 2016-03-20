@@ -2,25 +2,21 @@
     <header>
         <h1>Book List</h1>
 
-        <form ng-submit="addItem(books, book); book='';" layout="row">
-            <md-input-container flex>
-                <label>Book Name</label>
-                <input name="name" ng-model="book.name">
-            </md-input-container>
-
-            <md-input-container flex>
-                <label>Author Name</label>
-                <md-select ng-model="book.authorId">
-                    <md-option ng-repeat="author in authors" value="{{author._id}}">{{author.name}}</md-option>
-                </md-select>
-            </md-input-container>
+        <form layout="row" layout-align="left center">
+            <book-edit flex></book-edit>
+            <i class="icon-send material-icons" ng-click="addItem(books, book); book='';">send</i>
         </form>
     </header>
 
     <ul>
-        <li ng-repeat="book in books">
-            <button class="delete" ng-click="books.remove(book)">&times;</button>
-            <span>{{ book.name }} - {{ findItem(authors, book.authorId).name }}</span>
+        <li ng-repeat="book in books" layout="row" layout-align="left center">
+            <i class="icon-edits material-icons" ng-click="books.remove(book)">clear</i>
+            <div ng-if="book.edit" layout="row" layout-align="left center" flex>
+                <book-edit flex></book-edit>
+                <i ng-click="book.edit=false;books.save(book)" class="icon-edits material-icons">save</i>
+            </div>
+            <span ng-if="!book.edit">{{ book.name }} - {{ findItem(authors, book.authorId).name }}</span>
+            <i ng-if="!book.edit" ng-click="book.edit=true" class="icon-edits material-icons">create</i>
         </li>
     </ul>
 </div>

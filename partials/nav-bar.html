@@ -1,0 +1,94 @@
+<md-toolbar class="md-menu-toolbar" layout="row">
+    <md-toolbar-filler layout layout-align="center center">
+        <i class="material-icons">book</i>
+    </md-toolbar-filler> 
+    
+    <div layout="column">
+        <h2 class="md-toolbar-tools">Library System</h2>
+        
+        <div layout="row" layout-align="left center">
+            <md-menu-bar>
+                <md-menu>
+                    <button ng-click="$mdOpenMenu()">Library Resources</button>
+                    
+                    <md-menu-content>
+                        <h3 class="md-toolbar-tools">Books</h3>
+                    
+                        <md-menu-item>
+                            <md-button><a ui-sref="author">Authors</a></md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button><a ui-sref="book">Books</a></md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button><a ui-sref="copy">Copies</a></md-button>
+                        </md-menu-item>
+                        
+                        <md-menu-divider></md-menu-divider>
+                        
+                        <h3 class="md-toolbar-tools">Multimedia & Others</h3>
+                    
+                        <md-menu-item>
+                            <md-button><a ui-sref="magazine">Magazines</a></md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button><a ui-sref="magazine">Newspapers</a></md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button><a ui-sref="video">Videos</a></md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button><a ui-sref="cd">CDs</a></md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </md-menu-bar>
+            
+            <md-menu-bar>
+                <md-menu>
+                    <button ng-click="$mdOpenMenu()">Membership Services</button>
+                    
+                    <md-menu-content>
+                        <h3 class="md-toolbar-tools">Membership Cards</h3>
+                    
+                        <md-menu-item>
+                            <md-button><a ui-sref="newmember">New Card</a></md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button><a ui-sref="member">Members List</a></md-button>
+                        </md-menu-item>
+                        
+                        <md-menu-divider></md-menu-divider>
+                        
+                        <h3 class="md-toolbar-tools">Resources Check In/Out</h3>
+                    
+                        <md-menu-item>
+                            <md-button><a ui-sref="checkin">Check In</a></md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button><a ui-sref="checkout">Check Out</a></md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button><a ui-sref="record">Records</a></md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </md-menu-bar>
+            
+            <md-menu-bar>
+                <md-menu>
+                    <button ng-click="$mdOpenMenu()">Reports</button>
+                    
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-button><a ui-sref="newmember">Overdue Books</a></md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button><a ui-sref="member">Members on Overdue List</a></md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </md-menu-bar>
+        </div>
+    </div>
+</md-toolbar>

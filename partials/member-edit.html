@@ -1,0 +1,41 @@
+<div class="container edit-page" layout="column" flex ng-init="member=findItem(members, $state.params.id)">
+    <div ng-switch="currentState">
+        <h1 ng-switch-when="newmember">New Member</h1>
+        <h1 ng-switch-when="editmember">Edit Member</h1>
+    </div>
+    
+    <md-input-container flex ng-hide="currentState=='newmember'">
+        <label>Card ID</label>
+        <input name="id" ng-model="member._id" disabled>
+    </md-input-container>
+    
+    <md-input-container flex ng-hide="currentState=='newmember'">
+        <label>Join Date</label>
+        <input name="createdAt" ng-model="member.createdAt" disabled>
+    </md-input-container>
+    
+    <md-input-container flex>
+        <label>First Name</label>
+        <input name="firstName" ng-model="member.firstName">
+    </md-input-container>
+    
+    <md-input-container flex>
+        <label>Last Name</label>
+        <input name="lastName" ng-model="member.lastName">
+    </md-input-container>
+
+    <md-input-container flex>
+        <label>Gender</label>
+        <md-select ng-model="member.gender">
+            <md-option value="Male">Male</md-option>
+            <md-option value="Female">Female</md-option>
+        </md-select>
+    </md-input-container>
+    
+    <md-datepicker ng-model="member.dob" md-placeholder="Date of Birth" flex></md-datepicker>
+    
+    <div class="buttons-container">
+        <md-button ng-show="currentState=='newmember'" class="md-raised md-primary" ng-click="addItem(members, member); member='';">Add Member</md-button> 
+        <md-button ng-hide="currentState=='newmember'" class="md-raised md-primary" ng-click="members.save(member);$state.go('member')">Save Edits</md-button> 
+    </div>
+</div>
