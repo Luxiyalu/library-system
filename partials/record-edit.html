@@ -1,0 +1,59 @@
+<div class="container edit-page" layout="column" flex>
+    <div ng-switch="currentState">
+        <h1 ng-switch-when="checkin">Check In (Return)</h1>
+        <h1 ng-switch-when="checkout">Check Out</h1>
+    </div>
+    
+    <h4>{{ record }}</h4>
+    
+    <div class="autocomplete-container" flex layout="column">
+        <md-input-container class="md-input-has-value" flex>
+            <label>Member ID</label>
+        </md-input-container>
+        
+        <md-autocomplete
+            md-search-text="edit.searchMemberId"
+            md-items="item in edit.searchMember(edit.searchMemberId)"
+            md-selected-item-change="record.memberId=item._id"
+            md-item-text="item._id"
+            md-min-length="0"
+            placeholder="Enter Member ID">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{ item._id }} - {{ item.firstName }} {{ item.lastName }}</span>
+            </md-item-template>
+            <md-not-found>No member matching ID "{{edit.searchMemberId}}" were found.</md-not-found>
+        </md-autocomplete>
+    </div>
+        
+    <div class="autocomplete-container" flex layout="column">
+        <md-input-container class="md-input-has-value" flex>
+            <label>Resource ID</label>
+        </md-input-container>
+        
+        <md-autocomplete
+            md-search-text="edit.searchResourceId"
+            md-items="item in edit.searchResource(edit.searchResourceId)"
+            md-selected-item-change="record.resourceId=item._id"
+            md-item-text="item._id"
+            md-min-length="0"
+            placeholder="Enter Resource ID">
+            <md-item-template>
+                <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{ item._id }} - {{ findItem(books, item.bookId).name }}</span>
+            </md-item-template>
+            <md-not-found>No resource matching ID "{{edit.searchResourceId}}" were found.</md-not-found>
+        </md-autocomplete>
+    </div>
+    
+    <md-input-container flex>
+        <label>Action</label>
+        
+        <md-select ng-model="record.action" disabled ng-switch="currentState">
+            <md-option ng-switch-when="checkin" value="checkin" selected>Check In</md-option>
+            <md-option ng-switch-when="checkout" value="checkout" selected>Check Out</md-option>
+        </md-select>
+    </md-input-container>
+    
+    <div class="buttons-container">
+        <md-button class="md-raised md-primary" ng-click="addItem(records, record); record=''; edit=''">Add Record</md-button> 
+    </div>
+</div>

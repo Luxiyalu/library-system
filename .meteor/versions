@@ -92,5 +92,6 @@ ui@1.0.8
 underscore@1.0.4
 urigo:angular-ui-router@0.7.0
 url@1.0.5
+veekungx:angular-material-data-table@0.9.4
 webapp@1.2.3
 webapp-hashing@1.0.5

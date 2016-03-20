@@ -27,7 +27,7 @@
                 
                 <i ng-click="copy.edit=false;copies.save(copy)" class="icon-edits material-icons">save</i>
             </div>
-            <span ng-if="!copy.edit">{{ $index + 1 }} - {{ findItem(books, copy.bookId).name }}</span>
+            <span ng-if="!copy.edit">{{ $index + 1 }} - {{ findItem(books, copy.bookId).name }} - {{ copy._id }}</span>
             <i ng-if="!copy.edit" ng-click="copy.edit=true" class="icon-edits material-icons">create</i>
         </li>
     </ul>

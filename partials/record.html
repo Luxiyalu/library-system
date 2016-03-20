@@ -1,0 +1,22 @@
+<div class="table-container">
+    <table class="md-table">
+        <thead>
+            <tr>
+                <th>Member Name</th>
+                <th>Member ID</th>
+                <th>Resource Name</th>
+                <th>Resource ID</th>
+                <th>Record Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="record in records" ng-init="member=findItem(members, record.memberId);copy=findItem(copies, record.resourceId);item=findItem(books, copy.bookId)">
+            <td>{{ member.firstName }} {{ member.lastName }}</td>
+            <td>{{ record.memberId }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ record.resourceId }}</td>
+            <td>{{ record.action }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
