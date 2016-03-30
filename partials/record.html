@@ -7,6 +7,7 @@
                 <th>Resource Name</th>
                 <th>Resource ID</th>
                 <th>Record Action</th>
+                <th>Action Time</th>
             </tr>
         </thead>
         <tbody>
@@ -16,6 +17,7 @@
             <td>{{ item.name }}</td>
             <td>{{ record.resourceId }}</td>
             <td>{{ record.action }}</td>
+            <td>{{ record.createdAt | date:'medium' }}</td>
         </tr>
         </tbody>
     </table>

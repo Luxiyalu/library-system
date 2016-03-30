@@ -4,8 +4,6 @@
         <h1 ng-switch-when="checkout">Check Out</h1>
     </div>
     
-    <h4>{{ record }}</h4>
-    
     <div class="autocomplete-container" flex layout="column">
         <md-input-container class="md-input-has-value" flex>
             <label>Member ID</label>
@@ -54,6 +52,6 @@
     </md-input-container>
     
     <div class="buttons-container">
-        <md-button class="md-raised md-primary" ng-click="addItem(records, record); record=''; edit=''">Add Record</md-button> 
+        <md-button class="md-raised md-primary" ng-click="submit(record)">Add Record</md-button> 
     </div>
 </div>

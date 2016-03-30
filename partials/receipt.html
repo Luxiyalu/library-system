@@ -1,0 +1,20 @@
+<div class="container">
+    <header>
+        <h1>Receipt</h1>
+    </header>
+
+    <p ng-switch="record.action">
+        <b>Action: </b>
+        <span ng-switch-when="checkin">Check In (Return)</span>
+        <span ng-switch-when="checkout">Check Out</span>
+    </p>
+    <p><b>Member: </b>{{ member.firstName }} {{ member.lastName }}</p>
+    <p><b>Member ID: </b>{{ member._id }}</p>
+    <p><b>Resource Name: </b>{{ book.name }}</p>
+    <p><b>Resource ID: </b>{{ record.resourceId }}</p>
+    <p><b>Resource Author: </b>{{ author.name }}</p>
+    <p><b>Activity Time: </b>{{ record.createdAt }}</p>
+    <br>
+    <br>
+    <br>
+</div>

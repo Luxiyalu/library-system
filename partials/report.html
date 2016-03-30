@@ -1,0 +1,63 @@
+<div ng-cloak>
+    <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Overdue Books">
+                <md-content class="md-padding">
+                    <div class="table-container">
+                        <table class="md-table">
+                            <thead>
+                                <tr>
+                                    <th>Book Name</th>
+                                    <th>Copy ID</th>
+                                    <th>Member Name</th>
+                                    <th>Last Check Out Time</th>
+                                    <th>Overdue Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="record in overdueRecs" ng-show="record.overdue > 0">
+                                    <td>{{ record.book.name }}</td>
+                                    <td>{{ record.copy._id }}</td>
+                                    <td>{{ record.member.firstName }} {{ record.member.lastName }}</td>
+                                    <td>{{ record.createdAt | date:'medium' }}</td>
+                                    <td>{{ record.overdue = (record.createdAt | amDifference : null : 'days') - overdueSetting }} Days</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </md-content>
+            </md-tab>
+                
+            <md-tab label="Members on Overdue List">
+                <md-content class="md-padding" ng-repeat="(memberId, records) in overdueMems">
+                    <h3 ng-init="member=records[0].member">{{ member.firstName }} {{ member.lastName }}</h3>
+                
+                    <div class="table-container">
+                        <table class="md-table">
+                            <thead>
+                                <tr>
+                                    <th>Book Name</th>
+                                    <th>Copy ID</th>
+                                    <th>Last Check Out Time</th>
+                                    <th>Overdue Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="record in records">
+                                    <td>{{ record.book.name }}</td>
+                                    <td>{{ record.copy._id }}</td>
+                                    <td>{{ record.createdAt | date:'medium' }}</td>
+                                    <td>{{ record.overdue = (record.createdAt | amDifference : null : 'days') - overdueSetting }} Days</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </md-content>
+            </md-tab>
+            
+            <md-tab label="Books Checked-Out With Overdue Dates">
+                <md-content class="md-padding"></md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>
