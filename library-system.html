@@ -1,12 +1,20 @@
 <head>
-    <title>Library System</title>
+    <title>Dream College Library System</title>
     <link rel="icon" href="favicon.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body ng-app="library" ng-controller="AppCtrl">
     <nav-bar></nav-bar>
-    <ui-view>
-        <h1>Library System</h1>
+
+    <div ng-if="!user()._id">
+        <h1 class="text-center">Please log in.</h1>
+    </div>
+
+    <ui-view ng-if="user()._id">
+        <div id="start-screen">
+            <h1>Dream College Library System</h1>
+            <!-- <img src="bg.jpg"> -->
+        </div>
     </ui-view>
 </body>

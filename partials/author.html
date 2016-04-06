@@ -7,24 +7,59 @@
                 <label>Author Name</label>
                 <input name="name" ng-model="author.name">
             </md-input-container>
+            <md-input-container flex>
+                <label>Birth Year</label>
+                <input name="birthyear" type="number" ng-model="author.birthyear">
+            </md-input-container>
             
             <i class="icon-send material-icons" ng-click="addItem(authors, author); author='';">send</i>
         </form>
     </header>
 
-    <ul>
-        <li ng-repeat="author in authors" layout="row" layout-align="left center">
-            <i class="icon-edits material-icons" ng-click="authors.remove(author)">clear</i>
-            <div ng-if="author.edit" layout="row" layout-align="left center" flex>
-                <md-input-container flex>
-                    <label>Author Name</label>
-                    <input name="name" ng-model="author.name">
-                </md-input-container>
+    <md-input-container class="search-bar">
+        <label>Enter Search Keyword Here</label>
+        <input ng-model="keyword">
+    </md-input-container>
+    
+    <table class="md-table">
+        <thead>
+            <tr>
+                <th>Arthor Name</th>
+                <th>Birth Year</th>
+                <th>Record ID</th>
+                <th>Record Added Since</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="author in authors | filter: keyword">
+                <td ng-if="!author.edit">{{ author.name }}</td>
+                <td ng-if="!author.edit">{{ author.birthyear }}</td>
+                <td ng-if="!author.edit">{{ author._id }}</td>
+                <td>{{ author.createdAt }}</td>
+                <td ng-if="!author.edit">
+                    <i class="icon-edits material-icons" ng-click="author.edit=true">create</i>
+                    <i class="icon-edits material-icons" ng-click="authors.remove(author)">clear</i>
+                </td>
                 
-                <i ng-click="author.edit=false;authors.save(author)" class="icon-edits material-icons">save</i>
-            </div>
-            <span ng-if="!author.edit">{{author.name}}</span>
-            <i ng-if="!author.edit" ng-click="author.edit=true" class="icon-edits material-icons">create</i>
-        </li>
-    </ul>
+                <td ng-if="author.edit">
+                    <md-input-container flex>
+                        <label>Author Name</label>
+                        <input name="name" ng-model="author.name">
+                    </md-input-container>
+                </td>
+                <td ng-if="author.edit">
+                    <md-input-container flex>
+                        <label>Birth Year</label>
+                        <input name="birthyear" ng-model="author.birthyear">
+                    </md-input-container>
+                </td>
+                <td ng-if="author.edit">{{ author._id }}</td>
+                <td ng-if="author.edit">
+                    <i class="icon-edits material-icons" ng-click="author.edit=false;authors.save(author)">save</i>
+                    <i class="icon-edits material-icons" ng-click="author.edit=false">clear</i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

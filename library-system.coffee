@@ -5,7 +5,7 @@ Members = new Mongo.Collection('members')
 Records = new Mongo.Collection('records') # check in/out activities
 
 if Meteor.isClient
-  library = angular.module('library', ['angular-meteor', 'ui.router', 'ngMaterial', 'angularMoment'])
+  library = angular.module('library', ['angular-meteor', 'ui.router', 'ngMaterial', 'angularMoment', 'accounts.ui'])
 
   library.config new Array '$stateProvider', '$urlRouterProvider', '$mdThemingProvider', '$mdIconProvider',
     ($stateProvider, $urlRouterProvider, $mdThemingProvider, $mdIconProvider) ->
@@ -24,6 +24,7 @@ if Meteor.isClient
         # .state 'receipt', url: '/receipt', templateUrl: 'partials/receipt.html'
         .state 'receipt', url: '/receipt', templateUrl: 'partials/receipt.html', controller: 'ReceiptCtrl'
         
+
       $mdThemingProvider.theme('default')
         .primaryPalette('blue')
         .accentPalette('blue-grey')
@@ -39,7 +40,8 @@ if Meteor.isClient
     ($rootScope, $scope, $meteor, $timeout, $state) ->
       $scope.$state = $state
       $scope.$watch (-> $state.current.name), (newState) -> $scope.currentState = newState
-      $scope.overdueSetting = -1
+      $scope.overdueSetting = -10
+      $scope.user = Meteor.user
 
       $scope.authors = $scope.$meteorCollection -> Authors.find {}, {sort: {createdAt: -1}}
       $scope.books = $scope.$meteorCollection -> Books.find {}, {sort: {createdAt: -1}}
@@ -79,8 +81,8 @@ if Meteor.isClient
     $scope.book = $scope.findItem($scope.books, $scope.copy.bookId)
     $scope.member = $scope.findItem($scope.members, $scope.record.memberId)
     $scope.author = $scope.findItem($scope.authors, $scope.book.authorId)
+    $scope.print = -> window.print()
 
-      
   library.controller 'ReportCtrl', Array '$scope', ($scope) ->
     $scope.$watch (-> $scope.records.length), (newLength) ->
       if newLength > 0

@@ -8,15 +8,73 @@
         </form>
     </header>
 
-    <ul>
-        <li ng-repeat="book in books" layout="row" layout-align="left center">
-            <i class="icon-edits material-icons" ng-click="books.remove(book)">clear</i>
-            <div ng-if="book.edit" layout="row" layout-align="left center" flex>
-                <book-edit flex></book-edit>
-                <i ng-click="book.edit=false;books.save(book)" class="icon-edits material-icons">save</i>
-            </div>
-            <span ng-if="!book.edit">{{ book.name }} - {{ findItem(authors, book.authorId).name }}</span>
-            <i ng-if="!book.edit" ng-click="book.edit=true" class="icon-edits material-icons">create</i>
-        </li>
-    </ul>
+    <md-input-container class="search-bar">
+        <label>Enter Search Keyword Here</label>
+        <input ng-model="keyword">
+    </md-input-container>
+    
+    <table class="md-table">
+        <thead>
+            <tr>
+                <th>Record ID</th>
+                <th>Book Name</th>
+                <th>Pages</th>
+                <th>Publish Year</th>
+                <th>Price (CAD)</th>
+                <th>Author Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="book in books | filter: keyword">
+                <td>{{ book._id }}</td>
+                <td ng-if="!book.edit">{{ book.name }}</td>
+                <td ng-if="!book.edit">{{ book.pages }}</td>
+                <td ng-if="!book.edit">{{ book.publishyear }}</td>
+                <td ng-if="!book.edit">${{ book.price }}</td>
+                <td ng-if="!book.edit">{{ findItem(authors, book.authorId).name }}</td>
+                <td ng-if="!book.edit">
+                    <i class="icon-edits material-icons" ng-click="book.edit=true">create</i>
+                    <i class="icon-edits material-icons" ng-click="books.remove(book)">clear</i>
+                </td>
+                
+                <td ng-if="book.edit">
+                    <md-input-container flex>
+                        <label>book Name</label>
+                        <input name="name" ng-model="book.name">
+                    </md-input-container>
+                </td>
+                <td ng-if="book.edit">
+                    <md-input-container flex>
+                        <label>Pages</label>
+                        <input name="pages" ng-model="book.pages">
+                    </md-input-container>
+                </td>
+                <td ng-if="book.edit">
+                    <md-input-container flex>
+                        <label>Publish Year</label>
+                        <input name="publishyear" ng-model="book.publishyear">
+                    </md-input-container>
+                </td>
+                <td ng-if="book.edit">
+                    <md-input-container flex>
+                        <label>Price</label>
+                        <input name="price" ng-model="book.price">
+                    </md-input-container>
+                </td>
+                <td ng-if="book.edit">
+                    <md-input-container flex>
+                        <label>Author</label>
+                        <md-select ng-model="book.authorId">
+                            <md-option ng-repeat="author in authors" value="{{author._id}}">{{author.name}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </td>
+                <td ng-if="book.edit">
+                    <i class="icon-edits material-icons" ng-click="book.edit=false;books.save(book)">save</i>
+                    <i class="icon-edits material-icons" ng-click="book.edit=false">clear</i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

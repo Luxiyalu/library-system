@@ -2,12 +2,44 @@
     <header>
         <h1>Member List</h1>
     </header>
-
-    <ul>
-        <li ng-repeat="member in members" layout="row" layout-align="left center">
-            <i class="icon-edits material-icons" ng-click="members.remove(member)">clear</i>
-            <p>{{ member.firstName }} {{ member.lastName }} - {{ member.dob | date:'yyyy/MM/dd' }} - {{ member._id }}</p>
-            <i ng-if="!member.edit" ng-click="$state.go('editmember', {id: member._id})" class="icon-edits material-icons">create</i>
-        </li>
-    </ul>
+    
+    <md-input-container class="search-bar">
+        <label>Enter Search Keyword Here</label>
+        <input ng-model="keyword">
+    </md-input-container>
+    
+    <table class="md-table">
+        <thead>
+            <tr>
+                <th>Member ID</th>
+                <th>Join Date</th>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Gender</th>
+                <th>Date of Birth</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="member in members | filter: keyword">
+                <td>{{ member._id }}</td>
+                <td>{{ member.createdAt | date:'yyyy/MM/dd' }}</td>
+                <td>{{ member.username }}</td>
+                <td>{{ member.firstName }} {{ member.lastName }}</td>
+                <td>{{ member.email }}</td>
+                <td>{{ member.phone }}</td>
+                <td>{{ member.address }}</td>
+                <td>{{ member.gender }}</td>
+                <td>{{ member.dob | date:'yyyy/MM/dd' }}</td>
+                
+                <td>
+                    <i class="icon-edits material-icons" ng-click="$state.go('editmember', {id: member._id})">create</i>
+                    <i class="icon-edits material-icons" ng-click="books.remove(member)">clear</i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

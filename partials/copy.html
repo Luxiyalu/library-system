@@ -14,21 +14,22 @@
         </form>
     </header>
 
-    <ul>
-        <li ng-repeat="copy in copies" layout="row" layout-align="left center">
-            <i class="icon-edits material-icons" ng-click="copies.remove(copy)">clear</i>
-            <div ng-if="copy.edit" layout="row" layout-align="left center" flex>
-                <md-input-container flex>
-                    <label>Book Name</label>
-                    <md-select ng-model="copy.bookId">
-                        <md-option ng-repeat="book in books" value="{{book._id}}">{{book.name}}</md-option>
-                    </md-select>
-                </md-input-container>
-                
-                <i ng-click="copy.edit=false;copies.save(copy)" class="icon-edits material-icons">save</i>
-            </div>
-            <span ng-if="!copy.edit">{{ $index + 1 }} - {{ findItem(books, copy.bookId).name }} - {{ copy._id }}</span>
-            <i ng-if="!copy.edit" ng-click="copy.edit=true" class="icon-edits material-icons">create</i>
-        </li>
-    </ul>
+    <table class="md-table">
+        <thead>
+            <tr>
+                <th>Record ID</th>
+                <th>Copy Index</th>
+                <th>Copy Name</th>
+                <th>Record Added Since</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="copy in copies">
+                <td>{{ copy._id }}</td>
+                <td>{{ $index + 1 }}</td>
+                <td>{{ findItem(books, copy.bookId).name }}</td>
+                <td>{{ copy.createdAt }}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
